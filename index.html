@@ -1,131 +1,137 @@
-<!DOCTYPE html>    
-<html lang="zh-CN">    
-<head>    
-    <meta charset="UTF-8">    
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">    
-    <title>国邦靓号查询系统</title>    
-    <style>    
-        :root {    
-            --primary-color: #3498db;    
-            --secondary-color: #2c3e50;    
-            --accent-color: #e74c3c;    
-            --light-bg: #f8f9fa;    
-            --border-radius: 8px;    
-            --box-shadow: 0 2px 5px rgba(0,0,0,0.1);    
-        }    
-        * {    
-            margin: 0;    
-            padding: 0;    
-            box-sizing: border-box;    
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;    
-        }    
-        body {    
-            background-color: #f5f5f5;    
-            color: #333;    
-            line-height: 1.6;    
-            padding: 15px;    
-        }    
-        .container {    
-            max-width: 1200px;    
-            margin: 0 auto;    
-        }    
-        .header {    
-            background: url('file-745877744824773.png') no-repeat center center;    
-            background-size: cover;    
-            height: 300px;    
-            border-radius: var(--border-radius);    
-            box-shadow: var(--box-shadow);    
-            margin-bottom: 20px;    
-            position: relative;    
-        }    
-        .contact-info {    
-            position: relative;    
-            z-index: 1;    
-            display: flex;    
-            justify-content: space-between;    
-            padding: 20px;    
-            color: #333;    
-        }    
-        .contact-item {    
-            display: flex;    
-            align-items: center;    
-            gap: 10px;    
-        }    
-        .filters {    
-            display: flex;    
-            gap: 15px;    
-            margin-bottom: 20px;    
-            flex-wrap: wrap;    
-        }    
-        .filter-group {    
-            flex: 1;    
-            min-width: 250px;    
-            background: white;    
-            padding: 15px;    
-            border-radius: var(--border-radius);    
-            box-shadow: var(--box-shadow);    
-        }    
-        .filter-group label {    
-            display: block;    
-            margin-bottom: 5px;    
-            font-weight: 600;    
-            color: var(--secondary-color);    
-        }    
-        .filter-group select,    
-        .filter-group input {    
-            width: 100%;    
-            padding: 8px;    
-            border: 1px solid #ddd;    
-            border-radius: 4px;    
-            background: white;    
-        }    
-        .price-range {    
-            display: flex;    
-            align-items: center;    
-            gap: 10px;    
-        }    
-        .search-box {    
-            background: white;    
-            padding: 15px;    
-            border-radius: var(--border-radius);    
-            box-shadow: var(--box-shadow);    
-            display: flex;    
-            gap: 10px;    
-            align-items: center;    
-        }    
-        .search-box input[type="text"] {    
-            flex: 1;    
-            padding: 10px;    
-            border: 1px solid #ddd;    
-            border-radius: 4px;    
-            font-size: 16px;    
-        }    
-        .search-box button {    
-            padding: 10px 20px;    
-            background: var(--primary-color);    
-            color: white;    
-            border: none;    
-            border-radius: 4px;    
-            cursor: pointer;    
-            font-size: 16px;    
-        }    
-        .search-box button:hover {    
-            background: #2980b9;    
-        }    
-        .search-options {    
-            display: flex;    
-            align-items: center;    
-            gap: 10px;    
-        }    
-        .price-input-container {    
-            display: flex;    
-            gap: 10px;    
-            margin-top: 5px;    
-        }    
-        .price-input-container input {    
-            width: 120px;    
-            text-align: center;    
-        }    
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>国邦靓号查询系统</title>
+    <style>
+        :root {
+            --primary-color: #3498db;
+            --secondary-color: #2c3e50;
+            --accent-color: #e74c3c;
+            --light-bg: #f8f9fa;
+            --border-radius: 8px;
+            --box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        body {
+            background-color: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+            padding: 15px;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .header {
+            background: url('file-745877744824773.png') no-repeat center center;
+            background-size: cover;
+            height: 300px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            margin-bottom: 20px;
+            position: relative;
+        }
+        .contact-info {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            justify-content: space-between;
+            padding: 20px;
+            color: #333;
+        }
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .filters {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+        .filter-group {
+            flex: 1;
+            min-width: 250px;
+            background: white;
+            padding: 15px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+        }
+        .filter-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 600;
+            color: var(--secondary-color);
+        }
+        .filter-group select,
+        .filter-group input {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            background: white;
+        }
+        .price-range {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .search-box {
+            background: white;
+            padding: 15px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+        .search-box input[type="text"] {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+        .search-box button {
+            padding: 10px 20px;
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .search-box button:hover {
+            background: #2980b9;
+        }
+        .search-options {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .price-input-container {
+            display: flex;
+            gap: 10px;
+            margin-top: 5px;
+            flex-wrap: wrap;
+        }
+        .price-input-container input {
+            width: 120px;
+            text-align: center;
+        }
+        .price-input-container button {
+            padding: 8px 15px;
+            margin-top: 5px;
+            white-space: nowrap;
+        }
 
         .btn-secondary {
             padding: 8px 15px;
@@ -150,279 +156,282 @@
             font-weight: bold;
         }
 
-        .btn-clear {    
-            padding: 8px 15px;    
-            background: #e74c3c;    
-            color: white;    
-            border: none;    
-            border-radius: 4px;    
-            cursor: pointer;    
-        }    
-        .btn-clear:hover {    
-            background: #c0392b;    
-        }    
-        .phone-table {    
-            width: 100%;    
-            border-collapse: collapse;    
-            background: white;    
-            border-radius: var(--border-radius);    
-            overflow: hidden;    
-            box-shadow: var(--box-shadow);    
-        }    
-        .phone-table th {    
-            background: var(--secondary-color);    
-            color: white;    
-            padding: 12px 15px;    
-            text-align: left;    
-        }    
-        .phone-table td {    
-            padding: 12px 15px;    
-            border-bottom: 1px solid #eee;    
-        }    
-        .phone-table tr:hover {    
-            background-color: #f8f9fa;    
-        }    
-        .highlight {    
-            color: var(--accent-color);    
-            font-weight: bold;    
-        }    
-        .footer {    
-            text-align: center;    
-            padding: 20px;    
-            margin-top: 20px;    
-            color: #7f8c8d;    
-        }    
-        @media (max-width: 768px) {    
-            .filters {    
-                flex-direction: column;    
-            }    
-            .filter-group {    
-                width: 100%;    
-            }    
-            .search-box {    
-                flex-direction: column;    
-                align-items: stretch;    
-            }    
-            .search-box button {    
-                width: 100%;    
-                margin-top: 10px;    
-            }    
-            .search-options {    
-                justify-content: flex-start;    
-            }    
-            .header {    
-                height: 200px; /* 移动端头部高度调整 */    
-            }    
-            .table-container {    
-                overflow-x: auto; /* 表格横向滚动 */    
-            }    
-            .search-box input[type="text"] {    
-                font-size: 14px; /* 输入框字体调整 */    
-            }    
-            .search-box button {    
-                font-size: 14px; /* 按钮字体调整 */    
-                padding: 8px; /* 按钮内边距调整 */    
-            }    
-        }    
-    </style>    
-</head>    
-<body>    
-    <div class="container">    
-        <div class="header">    
-        </div>    
-            
-        <div class="filters">    
-            <div class="filter-group">    
-                <label for="region">选择地区</label>    
-                <select id="region">    
-                    <option value="">全部地区</option>    
-                    <option value="石家庄">石家庄</option>    
-                    <option value="保定">保定</option>    
-                    <option value="邯郸">邯郸</option>    
-                    <option value="唐山">唐山</option>    
-                    <option value="秦皇岛">秦皇岛</option>    
-                    <option value="张家口">张家口</option>    
-                    <option value="承德">承德</option>    
-                    <option value="廊坊">廊坊</option>    
-                    <option value="沧州">沧州</option>    
-                    <option value="衡水">衡水</option>    
-                </select>    
-            </div>    
-                
-            <div class="filter-group">    
-                <label>价格范围（元）</label>    
-                <div class="price-input-container">    
-                    <input type="text" id="min-price" placeholder="最低价(元)">    
-                    <span>-</span>    
-                    <input type="text" id="max-price" placeholder="最高价(元)">    
-                    <button id="showAbove10k" class="btn-secondary">万元以上</button>    
-                    <button id="clearFilters" class="btn-clear">清空</button>    
-                    <button id="presellButton" class="btn-secondary">预售号码</button>    
-                </div>    
-            </div>    
-        </div>    
-            
-        <div class="search-box">    
-            <input type="text" id="search-input" placeholder="输入号码搜索...">    
-            <div class="search-options">    
-                <input type="checkbox" id="exact-match" onchange="toggleSearchMode()">    
-                <label for="exact-match" style="font-size:12px;margin-left:5px;">尾号搜索</label>    
-            </div>    
-            <button onclick="searchNumbers()">查询</button>    
-        </div>    
-            
-        <div class="table-container">    
-            <table class="phone-table" id="phone-table">    
-                <thead>    
-                    <tr>    
-                        <th>号码</th>    
-                        <th>地区</th>    
-                        <th>价格（元）</th>    
-                    </tr>    
-                </thead>    
-                <tbody>    
-                    <!-- 数据将通过JavaScript动态插入 -->    
-                </tbody>    
-            </table>    
-        </div>    
-            
-        <div class="footer">    
-            <p>© 2025 河北国邦靓号查询平台 版权所有</p>    
-        </div>    
-    </div>    
-        
-    <script>    
-        const phoneData = [    
-            {地区: '石家庄', 号码: '13833131131', 价格: 500},    
-            {地区: '石家庄', 号码: '13933331111', 价格: 800},    
-            {地区: '保定', 号码: '13933133313', 价格: 1000},    
-            {地区: '邯郸', 号码: '13722224444', 价格: 1200},    
-            {地区: '唐山', 号码: '13655556666', 价格: 1500},    
-            {地区: '秦皇岛', 号码: '13831313111', 价格: 1800},    
-            {地区: '张家口', 号码: '13931311110', 价格: 2000},    
-            {地区: '承德', 号码: '13803110888', 价格: 2500},    
-            {地区: '廊坊', 号码: '13233334444', 价格: 3000},    
-            {地区: '沧州', 号码: '13932323200', 价格: 3500},    
-            {地区: '衡水', 号码: '13077778888', 价格: 4000},    
-            {地区: '石家庄', 号码: '13888888888', 价格: 5000},    
-            {地区: '保定', 号码: '13999999999', 价格: 8000},    
-            {地区: '邯郸', 号码: '13777777777', 价格: 10000},    
-            {地区: '唐山', 号码: '13666666666', 价格: 15000},    
-            {地区: '秦皇岛', 号码: '13555555555', 价格: 20000}    
-        ];    
-          
-        const phoneData2 = [    
-            {地区: '石家庄', 号码: '13800138000', 价格: 3000},    
-            {地区: '保定', 号码: '13900139000', 价格: 3500},    
-            {地区: '邯郸', 号码: '13700137000', 价格: 4000}    
-        ];    
-          
-        let isExactMatch = false;    
-        let showAbove10k = false;    
-        let currentData = phoneData;  
-        let isPresellActive = false;
-        
-        document.addEventListener('DOMContentLoaded', function() {    
-            renderTable(currentData);    
-            setupEventListeners();    
-        });    
-
-        function togglePresell() {  
-            isPresellActive = !isPresellActive;  
-            currentData = isPresellActive ? phoneData2 : phoneData;  
-            const presellButton = document.getElementById('presellButton');  
-            presellButton.classList.toggle('active', isPresellActive);  
-            renderTable(currentData);  
+        .btn-clear {
+            padding: 8px 15px;
+            background: #e74c3c;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
         }
+        .btn-clear:hover {
+            background: #c0392b;
+        }
+        .phone-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--box-shadow);
+        }
+        .phone-table th {
+            background: var(--secondary-color);
+            color: white;
+            padding: 12px 15px;
+            text-align: left;
+        }
+        .phone-table td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #eee;
+        }
+        .phone-table tr:hover {
+            background-color: #f8f9fa;
+        }
+        .highlight {
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+        .footer {
+            text-align: center;
+            padding: 20px;
+            margin-top: 20px;
+            color: #7f8c8d;
+        }
+        @media (max-width: 768px) {
+            .filters {
+                flex-direction: column;
+            }
+            .filter-group {
+                width: 100%;
+            }
+            .search-box {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .search-box button {
+                width: 100%;
+                margin-top: 10px;
+            }
+            .search-options {
+                justify-content: flex-start;
+            }
+            .header {
+                height: 200px;
+            }
+            .table-container {
+                overflow-x: auto;
+            }
+            .price-input-container {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .price-input-container input {
+                width: 100%;
+            }
+            .price-input-container button {
+                width: 100%;
+                margin-top: 5px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header"></div>
         
-        function setupEventListeners() {    
-            document.getElementById('region').addEventListener('change', filterNumbers);    
-            document.getElementById('showAbove10k').addEventListener('click', toggleAbove10k);    
-            document.getElementById('clearFilters').addEventListener('click', clearAllFilters);    
-            document.getElementById('presellButton').addEventListener('click', togglePresell);    
-        }    
+        <div class="filters">
+            <div class="filter-group">
+                <label for="region">选择地区</label>
+                <select id="region">
+                    <option value="">全部地区</option>
+                    <option value="石家庄">石家庄</option>
+                    <option value="保定">保定</option>
+                    <option value="邯郸">邯郸</option>
+                    <option value="唐山">唐山</option>
+                    <option value="秦皇岛">秦皇岛</option>
+                    <option value="张家口">张家口</option>
+                    <option value="承德">承德</option>
+                    <option value="廊坊">廊坊</option>
+                    <option value="沧州">沧州</option>
+                    <option value="衡水">衡水</option>
+                </select>
+            </div>
             
-        function toggleSearchMode() {    
-            isExactMatch = document.getElementById('exact-match').checked;    
-        }    
-            
-        function toggleAbove10k() {    
-            showAbove10k = !showAbove10k;    
-            document.getElementById('showAbove10k').textContent = showAbove10k ? '显示全部' : '万元以上';    
-            filterNumbers();    
-        }    
-            
-        function clearAllFilters() {    
-            document.getElementById('region').value = '';    
-            document.getElementById('min-price').value = '';    
-            document.getElementById('max-price').value = '';    
-            showAbove10k = false;    
-            document.getElementById('showAbove10k').textContent = '万元以上';    
-            document.getElementById('search-input').value = '';    
-            document.getElementById('exact-match').checked = false;    
-            currentData = phoneData;  
-            renderTable(currentData);    
-        }    
-          
-        function searchNumbers() {    
-            const searchTerm = document.getElementById('search-input').value.trim();    
-            if(!searchTerm) {    
-                filterNumbers();    
-                return;    
-            }    
+            <div class="filter-group">
+                <label>价格范围（元）</label>
+                <div class="price-input-container">
+                    <input type="text" id="min-price" placeholder="最低价(元)">
+                    <span>-</span>
+                    <input type="text" id="max-price" placeholder="最高价(元)">
+                    <button id="showAbove10k" class="btn-secondary">万元以上</button>
+                    <button id="clearFilters" class="btn-clear">清空</button>
+                    <button id="presellButton" class="btn-secondary">预售号码</button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="search-box">
+            <input type="text" id="search-input" placeholder="输入号码搜索...">
+            <div class="search-options">
+                <input type="checkbox" id="exact-match" onchange="toggleSearchMode()">
+                <label for="exact-match" style="font-size:12px;margin-left:5px;">尾号搜索</label>
+            </div>
+            <button onclick="searchNumbers()">查询</button>
+        </div>
+        
+        <div class="table-container">
+            <table class="phone-table" id="phone-table">
+                <thead>
+                    <tr>
+                        <th>号码</th>
+                        <th>地区</th>
+                        <th>价格（元）</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- 数据将通过JavaScript动态插入 -->
+                </tbody>
+            </table>
+        </div>
+        
+        <div class="footer">
+            <p>© 2025 河北国邦靓号查询平台 版权所有</p>
+        </div>
+    </div>
+    
+    <script>
+        const phoneData = [
+            {地区: '石家庄', 号码: '13833131131', 价格: 500},
+            {地区: '石家庄', 号码: '13933331111', 价格: 800},
+            {地区: '保定', 号码: '13933133313', 价格: 1000},
+            {地区: '邯郸', 号码: '13722224444', 价格: 1200},
+            {地区: '唐山', 号码: '13655556666', 价格: 1500},
+            {地区: '秦皇岛', 号码: '13831313111', 价格: 1800},
+            {地区: '张家口', 号码: '13931311110', 价格: 2000},
+            {地区: '承德', 号码: '13803110888', 价格: 2500},
+            {地区: '廊坊', 号码: '13233334444', 价格: 3000},
+            {地区: '沧州', 号码: '13932323200', 价格: 3500},
+            {地区: '衡水', 号码: '13077778888', 价格: 4000},
+            {地区: '石家庄', 号码: '13888888888', 价格: 5000},
+            {地区: '保定', 号码: '13999999999', 价格: 8000},
+            {地区: '邯郸', 号码: '13777777777', 价格: 10000},
+            {地区: '唐山', 号码: '13666666666', 价格: 15000},
+            {地区: '秦皇岛', 号码: '13555555555', 价格: 20000}
+        ];
+        
+        const phoneData2 = [
+            {地区: '石家庄', 号码: '13800138000', 价格: 3000},
+            {地区: '保定', 号码: '13900139000', 价格: 3500},
+            {地区: '邯郸', 号码: '13700137000', 价格: 4000}
+        ];
+        
+        let isExactMatch = false;
+        let showAbove10k = false;
+        let currentData = phoneData;
+        let isPresellActive = false;
+
+        document.addEventListener('DOMContentLoaded', function() {
+            renderTable(currentData);
+            setupEventListeners();
+        });
+
+        function togglePresell() {
+            isPresellActive = !isPresellActive;
+            currentData = isPresellActive ? phoneData2 : phoneData;
+            const presellButton = document.getElementById('presellButton');
+            presellButton.classList.toggle('active', isPresellActive);
+            renderTable(currentData);
+        }
+
+        function setupEventListeners() {
+            document.getElementById('region').addEventListener('change', filterNumbers);
+            document.getElementById('showAbove10k').addEventListener('click', toggleAbove10k);
+            document.getElementById('clearFilters').addEventListener('click', clearAllFilters);
+            document.getElementById('presellButton').addEventListener('click', togglePresell);
+        }
+
+        function toggleSearchMode() {
+            isExactMatch = document.getElementById('exact-match').checked;
+        }
+
+        function toggleAbove10k() {
+            showAbove10k = !showAbove10k;
+            document.getElementById('showAbove10k').textContent = showAbove10k ? '显示全部' : '万元以上';
+            filterNumbers();
+        }
+
+        function clearAllFilters() {
+            document.getElementById('region').value = '';
+            document.getElementById('min-price').value = '';
+            document.getElementById('max-price').value = '';
+            showAbove10k = false;
+            document.getElementById('showAbove10k').textContent = '万元以上';
+            document.getElementById('search-input').value = '';
+            document.getElementById('exact-match').checked = false;
+            currentData = phoneData;
+            renderTable(currentData);
+        }
+
+        function searchNumbers() {
+            const searchTerm = document.getElementById('search-input').value.trim();
+            if(!searchTerm) {
+                filterNumbers();
+                return;
+            }
                 
-            const searchedData = currentData.filter(item => {    
-                const number = item.号码;    
-                return isExactMatch ? number.endsWith(searchTerm) : number.includes(searchTerm);    
-            });    
+            const searchedData = currentData.filter(item => {
+                const number = item.号码;
+                return isExactMatch ? number.endsWith(searchTerm) : number.includes(searchTerm);
+            });
                 
-            filterNumbers(searchedData);    
-        }    
-            
-        function filterNumbers(searchedData = null) {    
-            const region = document.getElementById('region').value;    
-            const minPrice = parseFloat(document.getElementById('min-price').value) || 0;    
-            const maxPrice = parseFloat(document.getElementById('max-price').value) || 1000000;    
+            filterNumbers(searchedData);
+        }
+
+        function filterNumbers(searchedData = null) {
+            const region = document.getElementById('region').value;
+            const minPrice = parseFloat(document.getElementById('min-price').value) || 0;
+            const maxPrice = parseFloat(document.getElementById('max-price').value) || 1000000;
                 
-            let data = searchedData || currentData;    
+            let data = searchedData || currentData;
                 
-            const filteredData = data.filter(item => {    
-                const regionMatch = region ? item.地区 === region : true;    
-                const priceMatch = item.价格 >= minPrice && item.价格 <= maxPrice;    
+            const filteredData = data.filter(item => {
+                const regionMatch = region ? item.地区 === region : true;
+                const priceMatch = item.价格 >= minPrice && item.价格 <= maxPrice;
                     
-                if (showAbove10k) {    
-                    return regionMatch && item.价格 > 1000000;    
-                }    
+                if (showAbove10k) {
+                    return regionMatch && item.价格 > 1000000;
+                }
                     
-                return regionMatch && priceMatch;    
-            });    
+                return regionMatch && priceMatch;
+            });
                 
-            renderTable(filteredData);    
-        }    
-            
-        function renderTable(data) {    
-            const tbody = document.querySelector('#phone-table tbody');    
-            tbody.innerHTML = '';    
+            renderTable(filteredData);
+        }
+
+        function renderTable(data) {
+            const tbody = document.querySelector('#phone-table tbody');
+            tbody.innerHTML = '';
                 
-            data.forEach(item => {    
-                const formattedNumber = formatPhoneNumber(item.号码);    
-                const row = document.createElement('tr');    
-                row.innerHTML = `    
-                    <td>${formattedNumber}</td>    
-                    <td>${item.地区}</td>    
-                    <td>${item.价格.toLocaleString()}</td>    
-                `;    
-                tbody.appendChild(row);    
-            });    
-        }    
-            
-        function formatPhoneNumber(phone) {    
-            let formatted = phone;  
-            formatted = formatted.replace(/(\d)\1{3,}/g, '<span class="highlight">$&</span>');    
-            formatted = formatted.replace(/(\d)\1{2}/g, '<span class="highlight">$&</span>');    
-            formatted = formatted.replace(/(\d)(\d)\1\2\1\2/g, '<span class="highlight">$&</span>');    
-            return formatted;    
-        }    
-    </script>    
-</body>    
+            data.forEach(item => {
+                const formattedNumber = formatPhoneNumber(item.号码);
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${formattedNumber}</td>
+                    <td>${item.地区}</td>
+                    <td>${item.价格.toLocaleString()}</td>
+                `;
+                tbody.appendChild(row);
+            });
+        }
+
+        function formatPhoneNumber(phone) {
+            let formatted = phone;
+            formatted = formatted.replace(/(\d)\1{3,}/g, '<span class="highlight">$&</span>');
+            formatted = formatted.replace(/(\d)\1{2}/g, '<span class="highlight">$&</span>');
+            formatted = formatted.replace(/(\d)(\d)\1\2\1\2/g, '<span class="highlight">$&</span>');
+            return formatted;
+        }
+    </script>
+</body>
 </html>
