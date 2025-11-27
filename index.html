@@ -1,662 +1,353 @@
-<!doctype html>
-<html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-
-        <meta name="description" content="">
-        <meta name="author" content="">
-
-        <title>Barista Cafe HTML CSS Template</title>
-
-        <!-- CSS FILES -->                
-        <link rel="preconnect" href="https://fonts.googleapis.com">
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>河北手机号查询系统</title>
+    <style>
+        /* 基础样式 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Microsoft YaHei", sans-serif;
+        }
         
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-        <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200;0,400;0,600;0,700;1,200;1,700&display=swap" rel="stylesheet">
+        body {
+            background-color: #f5f7fa;
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            padding: 30px;
+        }
+        
+        /* 标题区域 */
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        h1 {
+            color: #1a73e8;
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+        
+        .subtitle {
+            color: #666;
+            font-size: 16px;
+        }
+        
+        /* 筛选区域 */
+        .filter-section {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            margin-bottom: 25px;
+        }
+        
+        .filter-group {
+            display: flex;
+            align-items: center;
+        }
+        
+        .filter-group select, .filter-group input {
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 15px;
+            min-width: 200px;
+        }
+        
+        .filter-group select {
+            min-width: 100px;
+        }
+        
+        button {
+            background-color: #1a73e8;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 15px;
+            transition: all 0.3s ease;
+        }
+        
+        button:hover {
+            background-color: #1062c1;
+        }
+        
+        /* 统计信息 */
+        .stats {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 25px;
+            color: #666;
+        }
+        
+        /* 号码展示区域 */
+        .phones-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+        }
+        
+        @media (max-width: 768px) {
+            .filter-section {
+                flex-direction: column;
+                gap: 15px;
+            }
             
-        <link href="css/bootstrap.min.css" rel="stylesheet">
-
-        <link href="css/bootstrap-icons.css" rel="stylesheet">
-
-        <link href="css/vegas.min.css" rel="stylesheet">
-
-        <link href="css/tooplate-barista.css" rel="stylesheet">
+            .filter-group {
+                width: 100%;
+            }
+            
+            .container {
+                padding: 20px 15px;
+            }
+            
+            .phones-container {
+                grid-template-columns: 1fr;
+            }
+        }
         
-    </head>
-    
-    <body>
-                
-            <main>
-                <nav class="navbar navbar-expand-lg">                
-                    <div class="container">
-                        <a class="navbar-brand d-flex align-items-center" href="index.html">
-                            <img src="images/coffee-beans.png" class="navbar-brand-image img-fluid" alt="Barista Cafe Template">
-                            Barista
-                        </a>
+        .phone-card {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+            padding: 25px;
+            transition: all 0.3s ease;
+            border-left: 4px solid #1a73e8;
+        }
         
-                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                            <span class="navbar-toggler-icon"></span>
-                        </button>
+        .phone-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(26,115,232,0.1);
+        }
         
-                        <div class="collapse navbar-collapse" id="navbarNav">
-                            <ul class="navbar-nav ms-lg-auto">
-                                <li class="nav-item">
-                                    <a class="nav-link click-scroll" href="#section_1">Home</a>
-                                </li>
+        .city-name {
+            font-size: 18px;
+            color: #1a73e8;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
         
-                                <li class="nav-item">
-                                    <a class="nav-link click-scroll" href="#section_2">About</a>
-                                </li>
-
-                                <li class="nav-item">
-                                    <a class="nav-link click-scroll" href="#section_3">Our Menu</a>
-                                </li>
-
-                                <li class="nav-item">
-                                    <a class="nav-link click-scroll" href="#section_4">Reviews</a>
-                                </li>
-
-                                <li class="nav-item">
-                                    <a class="nav-link click-scroll" href="#section_5">Contact</a>
-                                </li>
-                            </ul>
-
-                            <div class="ms-lg-3">
-                                <a class="btn custom-btn custom-border-btn" href="reservation.html">
-                                    Reservation
-                                    <i class="bi-arrow-up-right ms-2"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </nav>
-
-
-                <section class="hero-section d-flex justify-content-center align-items-center" id="section_1">
-
-                    <div class="container">
-                        <div class="row align-items-center">
-
-                            <div class="col-lg-6 col-12 mx-auto">
-                                <em class="small-text">welcome to Barista.co</em>
-                                
-                                <h1>Cafe Klang</h1>
-
-                                <p class="text-white mb-4 pb-lg-2">
-                                    your <em>favourite</em> coffee daily lives.
-                                </p>
-
-                                <a class="btn custom-btn custom-border-btn smoothscroll me-3" href="#section_2">
-                                    Our Story
-                                </a>
-
-                                <a class="btn custom-btn smoothscroll me-2 mb-2" href="#section_3"><strong>Check Menu</strong></a>
-                            </div>
-
-                        </div>
-                    </div>
-
-                    <div class="hero-slides"></div>
-                </section>
-
-
-                <section class="about-section section-padding" id="section_2">
-                    <div class="section-overlay"></div>
-                    <div class="container">
-                        <div class="row align-items-center">
-
-                            <div class="col-lg-6 col-12">
-                                <div class="ratio ratio-1x1">
-                                    <video autoplay="" loop="" muted="" class="custom-video" poster="">
-                                        <source src="videos/pexels-mike-jones-9046237.mp4" type="video/mp4">
-
-                                        Your browser does not support the video tag.
-                                    </video>
-
-                                    <div class="about-video-info d-flex flex-column">
-                                        <h4 class="mt-auto">We Started Since 2009.</h4>
-
-                                        <h4>Best Cafe in Klang.</h4>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-lg-5 col-12 mt-4 mt-lg-0 mx-auto">
-                                <em class="text-white">Barista.co</em>
-
-                                <h2 class="text-white mb-3">Cafe KL</h2>
-
-                                <p class="text-white">The café had been in the town for as long as anyone could remember, and it had become a beloved institution among the locals.</p>
-
-                                <p class="text-white">The café was run by a friendly and hospitable couple, Mr. and Mrs. Johnson. Barista Cafe is free Bootstrap 5 HTML.</p>
-
-                                <a href="#barista-team" class="smoothscroll btn custom-btn custom-border-btn mt-3 mb-4">Meet Baristas</a>
-                            </div>
-
-                        </div>
-                    </div>
-                </section>
-
-
-                <section class="barista-section section-padding section-bg" id="barista-team">
-                    <div class="container">
-                        <div class="row justify-content-center">
-
-                            <div class="col-lg-12 col-12 text-center mb-4 pb-lg-2">
-                                <em class="text-white">Creative Baristas</em>
-
-                                <h2 class="text-white">Meet People</h2>
-                            </div>
-
-                            <div class="col-lg-3 col-md-6 col-12 mb-4">
-                                <div class="team-block-wrap">
-                                    <div class="team-block-info d-flex flex-column">
-                                        <div class="d-flex mt-auto mb-3">
-                                            <h4 class="text-white mb-0">Steve</h4>
-
-                                            <p class="badge ms-4"><em>Boss</em></p>
-                                        </div>
-
-                                        <p class="text-white mb-0">your favourite coffee daily lives tempor.</p>
-                                    </div>
-
-                                    <div class="team-block-image-wrap">
-                                        <img src="images/team/portrait-elegant-old-man-wearing-suit.jpg" class="team-block-image img-fluid" alt="">
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-lg-3 col-md-6 col-12 mb-4">
-                                <div class="team-block-wrap">
-                                    <div class="team-block-info d-flex flex-column">
-                                        <div class="d-flex mt-auto mb-3">
-                                            <h4 class="text-white mb-0">Sandra</h4>
-
-                                            <p class="badge ms-4"><em>Manager</em></p>
-                                        </div>
-
-                                        <p class="text-white mb-0">your favourite coffee daily lives.</p>
-                                    </div>
-
-                                    <div class="team-block-image-wrap">
-                                        <img src="images/team/cute-korean-barista-girl-pouring-coffee-prepare-filter-batch-brew-pour-working-cafe.jpg" class="team-block-image img-fluid" alt="">
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-lg-3 col-md-6 col-12 mb-4">
-                                <div class="team-block-wrap">
-                                    <div class="team-block-info d-flex flex-column">
-                                        <div class="d-flex mt-auto mb-3">
-                                            <h4 class="text-white mb-0">Jackson</h4>
-
-                                            <p class="badge ms-4"><em>Senior</em></p>
-                                        </div>
-
-                                        <p class="text-white mb-0">your favourite coffee daily lives.</p>
-                                    </div>
-
-                                    <div class="team-block-image-wrap">
-                                        <img src="images/team/small-business-owner-drinking-coffee.jpg" class="team-block-image img-fluid" alt="">
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-lg-3 col-md-6 col-12">
-                                <div class="team-block-wrap">
-                                    <div class="team-block-info d-flex flex-column">
-                                        <div class="d-flex mt-auto mb-3">
-                                            <h4 class="text-white mb-0">Michelle</h4>
-
-                                            <p class="badge ms-4"><em>Barista</em></p>
-                                        </div>
-
-                                        <p class="text-white mb-0">your favourite coffee daily consectetur.</p>
-                                    </div>
-
-                                    <div class="team-block-image-wrap">
-                                        <img src="images/team/smiley-business-woman-working-cashier.jpg" class="team-block-image img-fluid" alt="">
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-                </section>
-
-
-                <section class="menu-section section-padding" id="section_3">
-                    <div class="container">
-                        <div class="row">
-
-                            <div class="col-lg-6 col-12 mb-4 mb-lg-0">
-                                <div class="menu-block-wrap">
-                                    <div class="text-center mb-4 pb-lg-2">
-                                        <em class="text-white">Delicious Menu</em>
-                                        <h4 class="text-white">Breakfast</h4>
-                                    </div>
-
-                                    <div class="menu-block">
-                                        <div class="d-flex">
-                                            <h6>Pancakes</h6>
-                                        
-                                            <span class="underline"></span>
-
-                                            <strong class="ms-auto">$12.50</strong>
-                                        </div>
-
-                                        <div class="border-top mt-2 pt-2">
-                                            <small>Fresh brewed coffee and steamed milk</small>
-                                        </div>
-                                    </div>
-
-                                    <div class="menu-block my-4">
-                                        <div class="d-flex">
-                                            <h6>
-                                                Toasted Waffle
-                                            </h6>
-                                        
-                                            <span class="underline"></span>
-
-                                            <strong class="text-white ms-auto"><del>$16.50</del></strong>
-
-                                            <strong class="ms-2">$12.00</strong>
-                                        </div>
-
-                                        <div class="border-top mt-2 pt-2">
-                                            <small>Brewed coffee and steamed milk</small>
-                                        </div>
-                                    </div>
-
-                                    <div class="menu-block">
-                                        <div class="d-flex">
-                                            <h6>Fried Chips
-                                                <span class="badge ms-3">Recommend</span>
-                                            </h6>
-                                        
-                                            <span class="underline"></span>
-
-                                            <strong class="ms-auto">$15.0</strong>
-                                        </div>
-
-                                        <div class="border-top mt-2 pt-2">
-                                            <small>Rich Milk and Foam</small>
-                                        </div>
-                                    </div>
-
-                                    <div class="menu-block my-4">
-                                        <div class="d-flex">
-                                            <h6>Pancakes</h6>
-                                        
-                                            <span class="underline"></span>
-
-                                            <strong class="ms-auto">$12.50</strong>
-                                        </div>
-
-                                        <div class="border-top mt-2 pt-2">
-                                            <small>Fresh brewed coffee and steamed milk</small>
-                                        </div>
-                                    </div>
-
-                                    <div class="menu-block">
-                                        <div class="d-flex">
-                                            <h6>Banana Cakes</h6>
-                                        
-                                            <span class="underline"></span>
-
-                                            <strong class="ms-auto">$18.0</strong>
-                                        </div>
-
-                                        <div class="border-top mt-2 pt-2">
-                                            <small>Rich Milk and Foam</small>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-lg-6 col-12">
-                                <div class="menu-block-wrap">
-                                    <div class="text-center mb-4 pb-lg-2">
-                                        <em class="text-white">Favourite Menu</em>
-                                        <h4 class="text-white">Coffee</h4>
-                                    </div>
-
-                                    <div class="menu-block">
-                                        <div class="d-flex">
-                                            <h6>Latte</h6>
-                                        
-                                            <span class="underline"></span>
-
-                                            <strong class="text-white ms-auto"><del>$12.50</del></strong>
-
-                                            <strong class="ms-2">$7.50</strong>
-                                        </div>
-
-                                        <div class="border-top mt-2 pt-2">
-                                            <small>Fresh brewed coffee and steamed milk</small>
-                                        </div>
-                                    </div>
-
-                                    <div class="menu-block my-4">
-                                        <div class="d-flex">
-                                            <h6>
-                                                White Coffee
-                                                <span class="badge ms-3">Recommend</span>
-                                            </h6>
-                                        
-                                            <span class="underline"></span>
-
-                                            <strong class="ms-auto">$5.90</strong>
-                                        </div>
-
-                                        <div class="border-top mt-2 pt-2">
-                                            <small>Brewed coffee and steamed milk</small>
-                                        </div>
-                                    </div>
-
-                                    <div class="menu-block">
-                                        <div class="d-flex">
-                                            <h6>Chocolate Milk</h6>
-                                        
-                                            <span class="underline"></span>
-
-                                            <strong class="ms-auto">$5.50</strong>
-                                        </div>
-
-                                        <div class="border-top mt-2 pt-2">
-                                            <small>Rich Milk and Foam</small>
-                                        </div>
-                                    </div>
-
-                                    <div class="menu-block my-4">
-                                        <div class="d-flex">
-                                            <h6>Greentea</h6>
-                                        
-                                            <span class="underline"></span>
-
-                                            <strong class="ms-auto">$7.50</strong>
-                                        </div>
-
-                                        <div class="border-top mt-2 pt-2">
-                                            <small>Fresh brewed coffee and steamed milk</small>
-                                        </div>
-                                    </div>
-
-                                    <div class="menu-block">
-                                        <div class="d-flex">
-                                            <h6>Dark Chocolate</h6>
-                                        
-                                            <span class="underline"></span>
-
-                                            <strong class="ms-auto">$7.25</strong>
-                                        </div>
-
-                                        <div class="border-top mt-2 pt-2">
-                                            <small>Rich Milk and Foam</small>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-                </section>
-
-
-                <section class="reviews-section section-padding section-bg" id="section_4">
-                    <div class="container">
-                        <div class="row justify-content-center">
-
-                            <div class="col-lg-12 col-12 text-center mb-4 pb-lg-2">
-                                <em class="text-white">Reviews by Customers</em>
-
-                                <h2 class="text-white">Testimonials</h2>
-                            </div>
-
-                            <div class="timeline">
-                                <div class="timeline-container timeline-container-left">
-                                    <div class="timeline-content">
-                                        <div class="reviews-block">
-                                            <div class="reviews-block-image-wrap d-flex align-items-center">
-                                                <img src="images/reviews/young-woman-with-round-glasses-yellow-sweater.jpg" class="reviews-block-image img-fluid" alt="">
-
-                                                <div class="">
-                                                    <h6 class="text-white mb-0">Sandra</h6>
-                                                    <em class="text-white"> Customers</em>
-                                                </div>
-                                            </div>
-
-                                            <div class="reviews-block-info">
-                                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-
-                                                <div class="d-flex border-top pt-3 mt-4">
-                                                    <strong class="text-white">4.5 <small class="ms-2">Rating</small></strong>
-
-                                                    <div class="reviews-group ms-auto">
-                                                        <i class="bi-star-fill"></i>
-                                                        <i class="bi-star-fill"></i>
-                                                        <i class="bi-star-fill"></i>
-                                                        <i class="bi-star-fill"></i>
-                                                        <i class="bi-star"></i>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="timeline-container timeline-container-right">
-                                    <div class="timeline-content">
-                                        <div class="reviews-block">
-                                            <div class="reviews-block-image-wrap d-flex align-items-center">
-                                                <img src="images/reviews/senior-man-white-sweater-eyeglasses.jpg" class="reviews-block-image img-fluid" alt="">
-
-                                                <div class="">
-                                                    <h6 class="text-white mb-0">Don</h6>
-                                                    <em class="text-white"> Customers</em>
-                                                </div>
-                                            </div>
-
-                                            <div class="reviews-block-info">
-                                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-
-                                                <div class="d-flex border-top pt-3 mt-4">
-                                                    <strong class="text-white">4.5 <small class="ms-2">Rating</small></strong>
-
-                                                    <div class="reviews-group ms-auto">
-                                                        <i class="bi-star-fill"></i>
-                                                        <i class="bi-star-fill"></i>
-                                                        <i class="bi-star-fill"></i>
-                                                        <i class="bi-star-fill"></i>
-                                                        <i class="bi-star"></i>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="timeline-container timeline-container-left">
-                                    <div class="timeline-content">
-                                        <div class="reviews-block">
-                                            <div class="reviews-block-image-wrap d-flex align-items-center">
-                                                <img src="images/reviews/young-beautiful-woman-pink-warm-sweater-natural-look-smiling-portrait-isolated-long-hair.jpg" class="reviews-block-image img-fluid" alt="">
-
-                                                <div class="">
-                                                    <h6 class="text-white mb-0">Olivia</h6>
-                                                    <em class="text-white"> Customers</em>
-                                                </div>
-                                            </div>
-
-                                            <div class="reviews-block-info">
-                                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-
-                                                <div class="d-flex border-top pt-3 mt-4">
-                                                    <strong class="text-white">4.5 <small class="ms-2">Rating</small></strong>
-
-                                                    <div class="reviews-group ms-auto">
-                                                        <i class="bi-star-fill"></i>
-                                                        <i class="bi-star-fill"></i>
-                                                        <i class="bi-star-fill"></i>
-                                                        <i class="bi-star-fill"></i>
-                                                        <i class="bi-star"></i>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-                </section>
-
-
-                <section class="contact-section section-padding" id="section_5">
-                    <div class="container">
-                        <div class="row">   
-
-                            <div class="col-lg-12 col-12">
-                                <em class="text-white">Say Hello</em>
-                                <h2 class="text-white mb-4 pb-lg-2">Contact</h2>
-                            </div>
-
-                            <div class="col-lg-6 col-12">
-                                <form action="#" method="post" class="custom-form contact-form" role="form">
-
-                                <div class="row">
-                                    
-                                    <div class="col-lg-6 col-12">
-                                        <label for="name" class="form-label">Name <sup class="text-danger">*</sup></label>
-
-                                        <input type="text" name="name" id="name" class="form-control" placeholder="Jackson" required="">
-                                    </div>
-
-                                    <div class="col-lg-6 col-12">
-                                        <label for="email" class="form-label">Email Address</label>
-
-                                        <input type="email" name="email" id="email" pattern="[^ @]*@[^ @]*" class="form-control" placeholder="Jack@gmail.com" required="">
-                                    </div>
-
-                                    <div class="col-12">
-                                        <label for="message" class="form-label">How can we help?</label>
-
-                                        <textarea name="message" rows="4" class="form-control" id="message" placeholder="Message" required=""></textarea>
-                                        
-                                    </div>
-                                </div>
-
-                                <div class="col-lg-5 col-12 mx-auto mt-3">
-                                    <button type="submit" class="form-control">Send Message</button>
-                                </div>
-                            </form>
-                            </div>
-
-                            <div class="col-lg-6 col-12 mx-auto mt-5 mt-lg-0 ps-lg-5">
-                                <iframe class="google-map" src="https://www.amap.com/" sandbox="" width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>  
-                            </div>
-
-                        </div>
-                    </div>
-                </section>
-
-
-                <footer class="site-footer">
-                    <div class="container">
-                        <div class="row">
-
-                            <div class="col-lg-4 col-12 me-auto">
-                                <em class="text-white d-block mb-4">Where to find us?</em>
-
-                                <strong class="text-white">
-                                    <i class="bi-geo-alt me-2"></i>
-                                    Bandra West, Mumbai, Maharashtra 400050, India
-                                </strong>
-
-                                <ul class="social-icon mt-4">
-                                    <li class="social-icon-item">
-                                        <a href="#" class="social-icon-link bi-facebook">
-                                        </a>
-                                    </li>
+        .phone-number {
+            font-size: 24px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 15px;
+        }
         
-                                    <li class="social-icon-item">
-                                        <a href="#" class="social-icon-link bi-twitter">
-                                        </a>
-                                    </li>
+        .phone-type {
+            display: inline-block;
+            background-color: #e8f0fe;
+            border-radius: 20px;
+            padding: 3px 12px;
+            font-size: 13px;
+            margin-right: 5px;
+            color: #1a73e8;
+        }
+        
+        .clear-btn {
+            background-color: #f1f1f1;
+            color: #333;
+            margin-left: 10px;
+            padding: 8px 15px;
+        }
+        
+        .clear-btn:hover {
+            background-color: #e4e4e4;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>河北手机号码查询系统</h1>
+            <p class="subtitle">石家庄 · 唐山 · 秦皇岛 · 邯郸 · 保定等地号码</p>
+        </header>
+        
+        <div class="filter-section">
+            <div class="filter-group">
+                <label>选择城市：</label>
+                <select id="city-select">
+                    <option value="all">所有城市</option>
+                    <option value="石家庄">石家庄</option>
+                    <option value="唐山">唐山</option>
+                    <option value="秦皇岛">秦皇岛</option>
+                    <option value="邯郸">邯郸</option>
+                    <option value="保定">保定</option>
+                    <option value="张家口">张家口</option>
+                    <option value="承德">承德</option>
+                    <option value="沧州">沧州</option>
+                    <option value="廊坊">廊坊</option>
+                    <option value="衡水">衡水</option>
+                </select>
+            </div>
+            
+            <div class="filter-group">
+                <label>搜索号码：</label>
+                <input type="text" id="search-input" placeholder="例如：0000 或 石家庄">
+                <button id="search-btn">搜索</button>
+                <button class="clear-btn" id="clear-btn">清除筛选</button>
+            </div>
+        </div>
+        
+        <div class="stats" id="stats">
+            <span>显示 <span id="count">23</span> 条号码</span>
+            <span>最后更新: 2023年10月</span>
+        </div>
+        
+        <div class="phones-container" id="phone-container">
+            <!-- 号码卡片将通过JS动态生成 -->
+        </div>
+    </div>
 
-                                    <li class="social-icon-item">
-                                        <a href="#" class="social-icon-link bi-whatsapp">
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
+    <script>
+        // 手机号码数据
+        const phoneNumbers = [
+            { city: "石家庄", number: "13903110000", types: ["移动", "宽带"], desc: "固定线路" },
+            { city: "石家庄", number: "13903111111", types: ["电信", "5G"], desc: "高速网络" },
+            { city: "石家庄", number: "13903112222", types: ["联通"], desc: "呼叫中心" },
+            { city: "石家庄", number: "13903113333", types: ["移动"], desc: "数字业务" },
+            { city: "石家庄", number: "13903114444", types: ["电信"], desc: "数据服务" },
+            { city: "唐山", number: "13903150000", types: ["联通"], desc: "休闲娱乐" },
+            { city: "秦皇岛", number: "13903310000", types: ["移动", "联通"], desc: "生活服务" },
+            { city: "邯郸", number: "13903100000", types: ["电信"], desc: "固定电话" },
+            { city: "张家口", number: "13903160000", types: ["移动"], desc: "旅游咨询" },
+            { city: "承德", number: "13903120000", types: ["联通"], desc: "文化教育" },
+            { city: "沧州", number: "13903330000", types: ["电信", "移动"], desc: "基础业务" },
+            { city: "廊坊", number: "13903320000", types: ["联通"], desc: "便捷服务" },
+            { city: "衡水", number: "13903322222", types: ["移动"], desc: "日常咨询" },
+            { city: "石家庄", number: "13903115555", types: ["电信"], desc: "网络测速" },
+            { city: "唐山", number: "13903151111", types: ["联通"], desc: "智能服务" },
+            { city: "秦皇岛", number: "13903311111", types: ["移动"], desc: "美食推荐" },
+            { city: "邯郸", number: "13903101111", types: ["电信"], desc: "业务办理" },
+            { city: "张家口", number: "13903161111", types: ["联通"], desc: "户外活动" },
+            { city: "承德", number: "13903121111", types: ["移动"], desc: "特色产品" },
+            { city: "沧州", number: "13903331111", types: ["电信", "移动"], desc: "服务网点" },
+            { city: "廊坊", number: "13903321111", types: ["联通"], desc: "实时咨询" },
+            { city: "衡水", number: "13903323333", types: ["移动"], desc: "社会保障" },
+            { city: "石家庄", number: "13903116666", types: ["电信"], desc: "网络安全" },
+        ];
 
-                            <div class="col-lg-3 col-12 mt-4 mb-3 mt-lg-0 mb-lg-0">
-                                <em class="text-white d-block mb-4">Contact</em>
-
-                                <p class="d-flex mb-1">
-                                    <strong class="me-2">Phone:</strong>
-                                    <a href="tel: 305-240-9671" class="site-footer-link">
-                                        (65) 
-                                        305 2409 671
-                                    </a>
-                                </p>
-
-                                <p class="d-flex">
-                                    <strong class="me-2">Email:</strong>
-
-                                    <a href="mailto:info@yourgmail.com" class="site-footer-link">
-                                        hello@barista.co
-                                    </a>
-                                </p>
-                            </div>
-
-
-                            <div class="col-lg-5 col-12">
-                                <em class="text-white d-block mb-4">Opening Hours.</em>
-
-                                <ul class="opening-hours-list">
-                                    <li class="d-flex">
-                                        Monday - Friday
-                                        <span class="underline"></span>
-
-                                        <strong>9:00 - 18:00</strong>
-                                    </li>
-
-                                    <li class="d-flex">
-                                        Saturday
-                                        <span class="underline"></span>
-
-                                        <strong>11:00 - 16:30</strong>
-                                    </li>
-
-                                    <li class="d-flex">
-                                        Sunday
-                                        <span class="underline"></span>
-
-                                        <strong>Closed</strong>
-                                    </li>
-                                </ul>
-                            </div>
-
-                            <div class="col-lg-8 col-12 mt-4">
-                                <p class="copyright-text mb-0">Copyright © Barista Cafe 2048 
-                                    - <a target="_blank" href="http://www.mobanwang.com/" title="网页模板">网页模板</a></p>
-                            </div>
-                    </div>
-                </footer>
-            </main>
-
-        <!-- JAVASCRIPT FILES -->
-        <script src="js/jquery.min.js"></script>
-        <script src="js/bootstrap.min.js"></script>
-        <script src="js/jquery.sticky.js"></script>
-        <script src="js/click-scroll.js"></script>
-        <script src="js/vegas.min.js"></script>
-        <script src="js/custom.js"></script>
-
-    </body>
+        // 获取DOM元素
+        const citySelect = document.getElementById('city-select');
+        const searchInput = document.getElementById('search-input');
+        const searchBtn = document.getElementById('search-btn');
+        const clearBtn = document.getElementById('clear-btn');
+        const phoneContainer = document.getElementById('phone-container');
+        const countElement = document.getElementById('count');
+        
+        // 渲染全部数据
+        function renderAllPhones() {
+            phoneContainer.innerHTML = '';
+            phoneNumbers.forEach(phone => {
+                addPhoneCard(phone);
+            });
+            countElement.textContent = phoneNumbers.length;
+        }
+        
+        // 添加手机号卡片
+        function addPhoneCard(phone) {
+            const card = document.createElement('div');
+            card.className = 'phone-card';
+            
+            // 拼音简写-用于类别标识
+            const cityName = getCityInitial(phone.city);
+            
+            card.innerHTML = `
+                <div class="city-name" style="display: flex; align-items: center;">
+                    <span style="margin-right: 10px;">[${phone.city}]</span>
+                </div>
+                <div class="phone-number">${phone.number}</div>
+                <div class="types">
+                    ${phone.types.map(type => `<span class="phone-type">${type}</span>`).join('')}
+                </div>
+                <p class="desc">${phone.desc || '通用服务'}</p>
+            `;
+            
+            phoneContainer.appendChild(card);
+        }
+        
+        // 获取城市拼音首字母
+        function getCityInitial(city) {
+            const pinyin = {
+                '石家庄': 'SJZ',
+                '唐山': 'TS',
+                '秦皇岛': 'QHB',
+                '邯郸': 'HD',
+                '保定': 'BD',
+                '张家口': 'ZJG',
+                '承德': 'CD',
+                '沧州': 'CZ',
+                '廊坊': 'LF',
+                '衡水': 'HS'
+            };
+            
+            return pinyin[city] || 'XY';
+        }
+        
+        // 筛选函数
+        function filterPhones() {
+            const selectedCity = citySelect.value;
+            const searchText = searchInput.value.toLowerCase();
+            
+            phoneContainer.innerHTML = '';
+            countElement.textContent = '0';
+            
+            let filteredPhones = [...phoneNumbers];
+            
+            // 筛选城市
+            if (selectedCity !== 'all') {
+                filteredPhones = filteredPhones.filter(phone => phone.city === selectedCity);
+            }
+            
+            // 筛选搜索文本
+            if (searchText) {
+                filteredPhones = filteredPhones.filter(phone => {
+                    return phone.number.toLowerCase().includes(searchText) || 
+                           phone.city.toLowerCase().includes(searchText) || 
+                           phone.desc.toLowerCase().includes(searchText);
+                });
+            }
+            
+            // 更新计数
+            countElement.textContent = filteredPhones.length;
+            
+            // 渲染结果
+            filteredPhones.forEach(phone => {
+                addPhoneCard(phone);
+            });
+        }
+        
+        // 事件监听
+        citySelect.addEventListener('change', filterPhones);
+        searchBtn.addEventListener('click', () => filterPhones());
+        searchInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') filterPhones();
+        });
+        
+        clearBtn.addEventListener('click', () => {
+            citySelect.value = 'all';
+            searchInput.value = '';
+            renderAllPhones();
+        });
+        
+        // 初始化页面
+        renderAllPhones();
+    </script>
+</body>
 </html>
