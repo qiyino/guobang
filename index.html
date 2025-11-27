@@ -32,7 +32,7 @@
         .header {
             background: url('file-745877744824773.png') no-repeat center center;
             background-size: cover;
-            height: 300px;
+            height: 200px;
             border-radius: var(--border-radius);
             box-shadow: var(--box-shadow);
             margin-bottom: 20px;
@@ -53,9 +53,11 @@
         }
         .filters {
             display: flex;
-            gap: 15px;
-            margin-bottom: 20px;
+            flex-direction: row;
+            align-items: center;
+            gap: 20px;
             flex-wrap: wrap;
+            margin-bottom: 20px;
         }
         .filter-group {
             flex: 1;
@@ -92,6 +94,8 @@
             display: flex;
             gap: 10px;
             align-items: center;
+            flex-grow: 1;
+            margin-bottom: 0;
         }
         .search-box input[type="text"] {
             flex: 1;
@@ -201,20 +205,16 @@
         @media (max-width: 768px) {
             .filters {
                 flex-direction: column;
-            }
-            .filter-group {
-                width: 100%;
+                align-items: stretch;
             }
             .search-box {
+                margin-top: 10px;
                 flex-direction: column;
                 align-items: stretch;
             }
             .search-box button {
                 width: 100%;
                 margin-top: 10px;
-            }
-            .search-options {
-                justify-content: flex-start;
             }
             .header {
                 height: 200px;
@@ -258,6 +258,15 @@
                 </select>
             </div>
             
+            <div class="search-box">
+                <input type="text" id="search-input" placeholder="输入号码搜索...">
+                <div class="search-options">
+                    <input type="checkbox" id="exact-match" onchange="toggleSearchMode()">
+                    <label for="exact-match" style="font-size:12px;margin-left:5px;">尾号搜索</label>
+                </div>
+                <button onclick="searchNumbers()">查询</button>
+            </div>
+            
             <div class="filter-group">
                 <label>价格范围（元）</label>
                 <div class="price-input-container">
@@ -269,15 +278,6 @@
                     <button id="presellButton" class="btn-secondary">预售号码</button>
                 </div>
             </div>
-        </div>
-        
-        <div class="search-box">
-            <input type="text" id="search-input" placeholder="输入号码搜索...">
-            <div class="search-options">
-                <input type="checkbox" id="exact-match" onchange="toggleSearchMode()">
-                <label for="exact-match" style="font-size:12px;margin-left:5px;">尾号搜索</label>
-            </div>
-            <button onclick="searchNumbers()">查询</button>
         </div>
         
         <div class="table-container">
