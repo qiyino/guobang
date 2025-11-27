@@ -75,6 +75,10 @@
             font-size: 13px;
             white-space: nowrap;
         }
+        .fixed-button.active {
+          background: #e74c3c; /* 深色背景 */
+          box-shadow: 0 0 0 2px #3498db; /* 蓝色边框 */
+        }
         .price-range-group {
             display: flex;
             gap: var(--compact-gap);
@@ -139,9 +143,19 @@
                 flex-shrink: 0;
             }
         }
+        
+
     </style>
 </head>
 <body>
+    <!--.highlight {
+        color: #e74c3c;  /* 红色字体 */
+        font-weight: bold;
+        background-color: #fff8f8; /* 浅红色背景 */
+        border-radius: 3px;
+        padding: 0 2px;
+
+    }-->
     <div class="container">
         <div class="header"></div>
         
@@ -332,9 +346,10 @@
 
         function formatPhoneNumber(phone) {
             let formatted = phone;
-            formatted = formatted.replace(/(\\d)\\1{3,}/g, '<span class="highlight">$&</span>');
-            formatted = formatted.replace(/(\\d)\\1{2}/g, '<span class="highlight">$&</span>');
-            formatted = formatted.replace(/(\\d)(\\d)\\1\\2\\1\\2/g, '<span class="highlight">$&</span>');
+            // 修复正则表达式：使用单反斜杠 + 正确匹配重复数字
+            formatted = formatted.replace(/(\d)\1{3,}/g, '<span class="highlight">$&</span>');  // 4次以上重复
+            formatted = formatted.replace(/(\d)\1{2}/g, '<span class="highlight">$&</span>');   // 3次重复
+            formatted = formatted.replace(/(\d)(\d)\1\2\1\2/g, '<span class="highlight">$&</span>');  // ABABAB模式
             return formatted;
         }
     </script>
