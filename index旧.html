@@ -133,11 +133,10 @@
             color: #7f8c8d;
             font-size: 12px;
         }
-        /* 优化建议 */
-        @media (max-width: 480px) {
-          .price-range-group { flex-direction: column; gap: 2px; }
-          .fixed-button { padding: 4px 6px; font-size: 12px; }
-        }
+        @media (max-width: 768px) {
+            .compact-search-area {
+                flex-wrap: wrap;
+            }
             .fixed-select,
             .fixed-input,
             .price-range-group {
@@ -181,7 +180,7 @@
                 <input type="text" class="fixed-input" id="search-input" placeholder="输入号码搜索...">
                 <div class="search-options">
                     <input type="checkbox" id="exact-match" onchange="toggleSearchMode()">
-                    <label for="exact-match" title="勾选后仅搜索号码结尾">尾号搜索</label>
+                    <label for="exact-match" style="font-size:12px;margin-left:5px;">尾号搜索</label>
                 </div>
                 <button class="fixed-button" onclick="searchNumbers()">查询</button>
             </div>
@@ -247,119 +246,10 @@
         let showAbove10k = false;
         let currentData = phoneData;
         let isPresellActive = false;
-        // 全局状态：当前排序的列和方向  
-        let sortConfig = {  
-            column: null,  
-            direction: 'asc'  
-        };  
-        
-        // 为所有表头添加排序功能  
-        function addSortingToHeaders() {  
-            const headers = document.querySelectorAll('#phone-table th');  
-            headers.forEach((header, index) => {  
-                header.style.cursor = 'pointer';  
-                header.addEventListener('click', () => toggleSort(index));  
-                // 保存原始文本用于箭头更新  
-                header.dataset.baseText = header.textContent;  
-            });  
-        }  
 
-        // 切换排序  
-        function toggleSort(columnIndex) {  
-            if (sortConfig.column === columnIndex) {  
-                sortConfig.direction = sortConfig.direction === 'asc' ? 'desc' : 'asc';  
-            } else {  
-                sortConfig.column = columnIndex;  
-                sortConfig.direction = 'asc';  
-            }  
-              
-            // 对数据进行排序  
-            sortData();  
-              
-            // 更新所有表头的箭头状态  
-            const headers = document.querySelectorAll('#phone-table th');  
-            headers.forEach((header, index) => {  
-                updateHeaderArrow(header, index === sortConfig.column ? sortConfig.direction : 'none');  
-            });  
-        }  
-          
-        // 更新表头箭头显示  
-        function updateHeaderArrow(header, direction) {  
-            header.innerHTML = header.dataset.baseText;  
-            if (direction === 'asc') {  
-                header.innerHTML += ' ↑';  
-            } else if (direction === 'desc') {  
-                header.innerHTML += ' ↓';  
-            }  
-        }  
-          
-        // 根据当前排序配置对数据进行排序  
-        function sortData() {  
-            const columnIndex = sortConfig.column;  
-            const direction = sortConfig.direction;  
-              
-            // 获取当前数据  
-            const data = getCurrentData();  
-              
-            // 根据列索引确定排序字段和类型  
-            const columnName = ['号码', '地区', '价格'][columnIndex];  
-              
-            const sortedData = [...data].sort((a, b) => {  
-                let aValue, bValue;  
-                  
-                switch (columnName) {  
-                    case '号码':  
-                        // 提取数字部分进行排序  
-                        aValue = parseInt(a.号码.replace(/\D/g, ''));  
-                        bValue = parseInt(b.号码.replace(/\D/g, ''));  
-                        break;  
-                    case '价格':  
-                        aValue = a.价格;  
-                        bValue = b.价格;  
-                        break;  
-                    case '地区':  
-                        aValue = a.地区.toLowerCase();  
-                        bValue = b.地区.toLowerCase();  
-                        break;  
-                    default:  
-                        aValue = a[columnName];  
-                        bValue = b[columnName];  
-                }  
-                  
-                if (aValue < bValue) return direction === 'asc' ? -1 : 1;  
-                if (aValue > bValue) return direction === 'asc' ? 1 : -1;  
-                return 0;  
-            });  
-              
-            // 更新数据并重新渲染  
-            renderTable(sortedData);  
-        }  
-          
-        // 获取当前数据（考虑搜索和过滤）  
-        function getCurrentData() {  
-            // 这里应该返回当前过滤后的数据  
-            // 简化处理：直接返回当前数据  
-            return currentData;  
-        }  
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-        // 初始化  
-        document.addEventListener('DOMContentLoaded', function() {  
-            renderTable(currentData);  
-            setupEventListeners();  
-            addSortingToHeaders();  
+        document.addEventListener('DOMContentLoaded', function() {
+            renderTable(currentData);
+            setupEventListeners();
         });
 
         function togglePresell() {
@@ -416,67 +306,27 @@
                 
             filterNumbers(searchedData);
         }
-        
-        // 价格输入验证函数  
-        function validatePriceInput(inputElement) {  
-            const value = inputElement.value.trim();  
-              
-            // 处理空值（视为0或极大值）  
-            if (value === '') {  
-                return null; // 返回null表示使用默认值  
-            }  
-              
-            // 验证数字格式（允许小数点后两位）  
-            if (!/^\d+(\.\d{1,2})?$/.test(value)) {  
-                alert('请输入有效价格（纯数字，可含小数点后两位）');  
-                inputElement.value = '';  
-                return null;  
-            }  
-              
-            return parseFloat(value);  
-        }  
 
-        // 修改filterNumbers函数  
-        function filterNumbers(searchedData = null) {  
-            const region = document.getElementById('region').value;  
-            const minPriceInput = document.getElementById('min-price');  
-            const maxPriceInput = document.getElementById('max-price');  
-              
-            // 验证并获取价格  
-            const minPrice = validatePriceInput(minPriceInput) ?? 0;  
-            const maxPrice = validatePriceInput(maxPriceInput) ?? 1000000;  
-              
-            // 确保最低价不大于最高价  
-            if (minPrice > maxPrice) {  
-                alert('最低价不能高于最高价，已自动调整');  
-                [minPriceInput.value, maxPriceInput.value] = [maxPrice, minPrice];  
-            }  
-              
-            let data = searchedData || currentData;  
-              
-            const filteredData = data.filter(item => {  
-                const regionMatch = region ? item.地区 === region : true;  
-                const priceMatch = item.价格 >= minPrice && item.价格 <= maxPrice;  
-                  
-                if (showAbove10k) {  
-                    return regionMatch && item.价格 > 1000000;  
-                }  
-                  
-                return regionMatch && priceMatch;  
-            });  
-              
-            renderTable(filteredData);  
-        }  
-          
-        // 添加输入时实时验证  
-        document.querySelectorAll('.price-input').forEach(input => {  
-            input.addEventListener('input', function() {  
-                const value = this.value.trim();  
-                if (value && !/^\d+(\.\d{0,2})?$/.test(value)) {  
-                    this.value = value.slice(0, -1); // 删除无效字符  
-                }  
-            });  
-        });
+        function filterNumbers(searchedData = null) {
+            const region = document.getElementById('region').value;
+            const minPrice = parseFloat(document.getElementById('min-price').value) || 0;
+            const maxPrice = parseFloat(document.getElementById('max-price').value) || 1000000;
+                
+            let data = searchedData || currentData;
+                
+            const filteredData = data.filter(item => {
+                const regionMatch = region ? item.地区 === region : true;
+                const priceMatch = item.价格 >= minPrice && item.价格 <= maxPrice;
+                    
+                if (showAbove10k) {
+                    return regionMatch && item.价格 > 1000000;
+                }
+                    
+                return regionMatch && priceMatch;
+            });
+                
+            renderTable(filteredData);
+        }
 
         function renderTable(data) {
             const tbody = document.querySelector('#phone-table tbody');
@@ -497,7 +347,8 @@
         function formatPhoneNumber(phone) {
             let formatted = phone;
             // 修复正则表达式：使用单反斜杠 + 正确匹配重复数字
-            formatted = formatted.replace(/(\d)\1{2,}/g, '<span class="highlight">$&</span>'); // 合并为单一正则
+            formatted = formatted.replace(/(\d)\1{3,}/g, '<span class="highlight">$&</span>');  // 4次以上重复
+            formatted = formatted.replace(/(\d)\1{2}/g, '<span class="highlight">$&</span>');   // 3次重复
             formatted = formatted.replace(/(\d)(\d)\1\2\1\2/g, '<span class="highlight">$&</span>');  // ABABAB模式
             return formatted;
         }
